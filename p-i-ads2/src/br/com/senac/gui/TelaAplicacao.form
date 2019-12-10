@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="br.com.senac.gui.TelaAplicacao">
+  <grid id="27dc6" binding="panelPrincipal" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="10" left="10" bottom="10" right="10"/>
+    <constraints>
+      <xy x="20" y="20" width="1024" height="768"/>
+    </constraints>
+    <properties>
+      <minimumSize width="1024" height="768"/>
+      <preferredSize width="1024" height="768"/>
+    </properties>
+    <border type="none" title="Tratamento de Arquivos">
+      <font size="14"/>
+    </border>
+    <children>
+      <scrollpane id="27b12" binding="panelTable">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="etched"/>
+        <children>
+          <component id="9359a" class="javax.swing.JTable" binding="tableDados">
+            <constraints/>
+            <properties>
+              <dragEnabled value="false"/>
+            </properties>
+          </component>
+        </children>
+      </scrollpane>
+      <grid id="ca511" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <enabled value="false"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="d12a4" class="javax.swing.JButton" binding="gerarGráficosButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <text value="Gerar Gráficos"/>
+            </properties>
+          </component>
+          <component id="18268" class="javax.swing.JButton" binding="carregarCSVButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <text value="Carregar CSV..."/>
+            </properties>
+          </component>
+          <component id="fb015" class="javax.swing.JComboBox" binding="comboBoxGraficos">
+            <constraints/>
+            <properties>
+              <model>
+                <item value="Turno"/>
+                <item value="Sit. Civil"/>
+                <item value="Sexo"/>
+                <item value="Motivo"/>
+                <item value="Turma"/>
+                <item value="Área"/>
+              </model>
+              <name value="Gráficos"/>
+              <toolTipText value="Selecione a informação a analisar."/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
