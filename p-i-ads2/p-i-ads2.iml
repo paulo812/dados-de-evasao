@@ -118,5 +118,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="de.plushnikov.lombok-intellij-plugin:lombok-plugin:0.5" level="project" />
   </component>
 </module>

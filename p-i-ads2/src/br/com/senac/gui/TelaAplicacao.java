@@ -1,9 +1,8 @@
 package br.com.senac.gui;
 
+import br.com.senac.connection.ArquivoDao;
 import br.com.senac.connection.Conectar;
 import br.com.senac.tratamentoDeDados.TratamentoCSV;
-import javafx.scene.chart.Chart;
-import lombok.SneakyThrows;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -13,16 +12,19 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileNotFoundException;
+
 
 public class TelaAplicacao {
     private JPanel panelPrincipal;
+    private JPanel panelBtn;
+    private JPanel panelDados;
     private JTable tableDados;
     private JScrollPane panelTable;
-    private JButton gerarGráficosButton;
+    private JButton resetarBdButton;
     private JButton carregarCSVButton;
     private JComboBox comboBoxGraficos;
+    private JTextArea textArea1;
+    private JTextArea textArea2;
     public static DefaultTableModel defaultTableModel;
     private int linha, coluna;
     private static String header[] = new String[]{"Turno", "Situação Civil", "Sexo", "Data Requerimento", "Motvo", "Turma",
@@ -57,7 +59,6 @@ public class TelaAplicacao {
         tableDados.setModel(defaultTableModel);
 
         carregarCSVButton.addActionListener(new ActionListener() {
-            @SneakyThrows
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
 
@@ -72,30 +73,32 @@ public class TelaAplicacao {
 
             }
         });
-        gerarGráficosButton.addActionListener(new ActionListener() {
+        resetarBdButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                criaGrafico(panelPrincipal);
+                ArquivoDao.resetarBancoDeDados();
             }
         });
         comboBoxGraficos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+
             }
         });
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
         JFrame frame = new JFrame("TelaAplicacao");
         frame.setContentPane(new TelaAplicacao().panelPrincipal);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 
 
 
         //Conexão com BD...
-        Conectar conectar = Conectar.getConexao();
+        Conectar.getConexao();
 
 
     }

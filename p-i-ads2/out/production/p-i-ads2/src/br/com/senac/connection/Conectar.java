@@ -5,9 +5,9 @@ import java.sql.*;
 
 public class Conectar {
     private static Connection connection;
-    private static final String url = "jdbc:mysql://localhost/bd-projeto-integrador?useTimezone=true&serverTimezone=UTC";
+    private static final String url = "jdbc:mysql://localhost:3306/bd-projeto-integrador";
     private static final String user = "root";
-    private static final String password = "070294";
+    private static final String password = "";
 
     private Conectar() {
     }
