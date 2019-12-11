@@ -2,6 +2,8 @@ package br.com.senac.tratamentoDeDados;
 
 import br.com.senac.connection.ArquivoDao;
 import br.com.senac.gui.TelaAplicacao;
+import lombok.Data;
+import lombok.Validate;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -9,6 +11,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+@Data
 
 public class TratamentoCSV {
     public static String caminhoDoArquivo;
@@ -38,9 +42,30 @@ public class TratamentoCSV {
             while (arquivoLidoEmTexto.hasNext()) {
 
                 linhaDoArquivo = arquivoLidoEmTexto.nextLine();
+
                 String[] dadosEntreVirgulas = linhaDoArquivo.split(",");
                 Arquivo arquivo = new Arquivo();
-                arquivo.incrementaId();
+                if (linhaDoArquivo.contains("Matutino")) {
+                    arquivo.setMatutino(arquivo.getMatutino() + 1);
+                }
+                if (linhaDoArquivo.contains("Noturno")) {
+                    arquivo.setNoturno(arquivo.getNoturno() + 1);
+                }
+                if (linhaDoArquivo.contains("Integral")) {
+                    arquivo.setIntegral(arquivo.getIntegral() + 1);
+                }
+                if (linhaDoArquivo.contains("Solteiro(a)")) {
+                    arquivo.setSolteiro(arquivo.getSolteiro() + 1);
+                }
+                if (linhaDoArquivo.contains("Casado(a)")) {
+                    arquivo.setCasado(arquivo.getCasado() + 1);
+                }
+                if (linhaDoArquivo.contains("Divorciado(a)")) {
+                    arquivo.setDivorciado(arquivo.getDivorciado() + 1);
+                }
+                if (linhaDoArquivo.contains("União Estável")) {
+                    arquivo.setUniaoEstavel(arquivo.getUniaoEstavel() + 1);
+                }
                 arquivo.setTurnoMatricula(dadosEntreVirgulas[0]);
                 arquivo.setSituacaoCivilAluno(dadosEntreVirgulas[1]);
                 arquivo.setSexoAluno(dadosEntreVirgulas[2]);
@@ -48,6 +73,7 @@ public class TratamentoCSV {
                 arquivo.setMotivoRequerimento(dadosEntreVirgulas[4]);
                 arquivo.setTurma(dadosEntreVirgulas[5]);
                 arquivo.setAreaTurma(dadosEntreVirgulas[6]);
+
 
                 listaDeDados.add(arquivo);
                 ArquivoDao.inserirNoBanco(arquivo);
@@ -67,8 +93,8 @@ public class TratamentoCSV {
             String turma = listaDeDados.get(i).getTurma();
             String areaTurma = listaDeDados.get(i).getAreaTurma();
 
-            Object[] dados =  { turnoMatricula, situacaoCivil, sexoAluno, dataCadastroRequerimento, motivoRequerimento,
-                    turma, areaTurma };
+            Object[] dados = {turnoMatricula, situacaoCivil, sexoAluno, dataCadastroRequerimento, motivoRequerimento,
+                    turma, areaTurma};
             TelaAplicacao.defaultTableModel.addRow(dados);
         }
     }
