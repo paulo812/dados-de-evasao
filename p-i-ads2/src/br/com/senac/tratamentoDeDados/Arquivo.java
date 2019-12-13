@@ -1,5 +1,7 @@
 package br.com.senac.tratamentoDeDados;
 
+import br.com.senac.gui.TelaAplicacao;
+
 public class Arquivo {
     private String turnoMatricula;
     private String situacaoCivilAluno;
@@ -508,6 +510,7 @@ public class Arquivo {
     public void incrementaContador(){
         this.contador += 1;
     }
+
 
 
 }
